@@ -1,0 +1,12 @@
+a) http bu giper matnlarni tashuvchi browserni maxsus protokoli hisoblanadi
+https bu shu http ni secure varianti
+b)Dependency Injectionni  biz spring da Bean qilgan classlarimiz yoki methodlarimizni boshqa joyda ishlatishimiz uchun ishlatamiz.uning qulaylik tarafi kop.Masalan operativ xotiraga ancha foydasi bor.Sababi agar biz obyekt olsak operativ xotirani toldirib qoyardik.U esa har chaqirganimizda bitta joydan olib keladi.
+IoC bu bu beanlarni saqlash ularga ishlov berish bilan avtomatik shugullanuvchi konteyner hisoblanadi.
+c)Servlet texnologiyasi veb-ilovani yaratish uchun ishlatiladi (server tomonida joylashgan va dinamik veb-sahifani yaratadi).
+Servlet texnologiyasi java tili tufayli mustahkam va kengaytirilishi mumkin. Servletdan oldin CGI (Common Gateway Interface) skript tili server tomoni dasturlash tili sifatida keng tarqalgan edi. Biroq, bu texnologiyaning ko'plab kamchiliklari bor edi. Biz ushbu kamchiliklarni quyida muhokama qildik.
+d)@Bean bu methodlarni bean  qilib beradi.
+@Component bu class level da ya'ni classlarni bean qilish bilan shugullanadi
+e)Cookie - bu ruxsat degan manoda ishlatsak boladi.Misol uchun biror bir saytga login parol bilan kirganimizda u bizga cookie beradi yani biz kirganimizni malum bir vaqtgacha eslab qoladi.
+Session - bu Spring sessiyasi dastur konteyneriga xos yechimga bog'lanmasdan klasterli seanslarni qo'llab-quvvatlashni ahamiyatsiz qiladi. 
+Spring Session foydalanuvchining seans ma'lumotlarini boshqarish uchun API va ilovalarni taqdim etadi.
+ 

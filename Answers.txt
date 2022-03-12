@@ -1,0 +1,70 @@
+					===== Javob F =====
+@QUALIFIER - Dastur yozayotganimizda shunday holatlar boladiki, qachonki bizga bir class tipida bo'lgan ammo misol uchun har xil configuratsiya qilingan 2ta 
+yoki undan ortoq bean kerak bo'lishi mumkin. 
+Ana endi aynan shu paytda biz @Qualifier annotatsiyasi orqali ularni ajratib olishimiz mumkin, ya'ni bizga aynan qaysi @bean kerakligini 
+biz Spring @Qualifier annotatsiyasiga o'rnatilgan nomdan ajratib oladi.
+
+@SCOPE - @SCOPE annotatsiyasi orqali biz yaratayotgan @bean larning qancha muddat yashashi, va qaysi vaqt oralig'ida yashashi kerakligini ko'rsatib ketishimiz mumkin.
+Agar biz @bean yaratib ammo unga @SCOPE annotatsiyasini qo'ymasak uni default value-si (singleton) ya'ni, butun IoC container uchun bitta @bean yaratiladi. 
+Shuningdek bu annotatsiyasini o'zining 5-ta qabul qiladigan qiymatlari bor, ular: 
+1 singleton - bu value @scope annotatsiyasini default value si hisoblanib, container ga kelgan har bir request ga xuddi o'sha biz yaratgan birgina @bean qaytariladi 
+va u bizning dasturimizni oxirida container da saqlanadi.
+
+2 prototype - container ga kelgan har bir request uchun (ya'ni qachonki biz container dan @bean extract ya'ni ichidan olganimizda) yangi @bean yaratiladi.
+
+3 request - bu value o'rnatilganda esa, @bean http request oralig'ida yashaydi, ya'ni har bir yangi kelgan http request uchun yangi bean yaratilib qaytariladi.
+
+4 session - bu value o'rnatilganda esa, IoC container dagi @bean http session oralig'ida yashaydi, ya'ni har bir http session uchun yangi @bean yaratiladi.
+
+5 global-sesion - huddi session ga o'xshash faqatgina, @bean har bir global http-session uchun yangi yaratilib qaytariladi
+
+
+					===== Javob G =====
+@ModelAttribute - bu annotatsiyasi birir bir qiymatni modelga biror bir noma orqali birlashtirishga ya'ni 'bind' qilib, keyin esa bu modelni wev-view uzatib yuboradi
+Spring MVC da bu holat - DATA binding deb nomlanadi. Ana endi biz bu annotatsiyasini ishlatishga keladigan bo'lsak, @ModelAttribute annotatsiyasi asosan 2 xil 
+tarzda ishlatiladi. Birinchisi method ni parametri orqalib kirib kelganida, oyki method level da. 
+1. Qachonki biz bu annotatsiyani method level-da ishlatadigan bo'lsak biz model ga qo'shgan attribute larimiz barcha view larga bind qilinadi.
+2. Aksincha method parametridan kirib kelgan holatida ishlatsak, modelga biriktirgan attribute larimiz ya'ni ma'lumotlarimiz faqatgina shu controller qaysi view 
+ga yo'naltirsa aynan o'sha view ga biz biriktirgan attribute larimiz bind qilinadi.
+
+					===== Javob H =====
+@RequestParam - bu annotatsiya biror bir url ga user kiritgan yoki shunchaki front-end dan berib yuborilgan http so'rovni parametrlarini extract ya'ni ajratib olish 
+uchun qo'llaniladi. Masalan biz qandaydir ish bajarmoqchimiz va buning uchun biz request yuborishimiz kerak bo'ladi ammo shu ishni bajarish uchun api bizdan qandaydir 
+ma'lumotlarni kiritishimizni kutadi va biz shu ma'lumotlarni aynan @RequestParam annotatsiyasi orqali back-end da ushlab olib bu ma'lumotlardan kelib chiqqan holda
+http request ni ustida amallar bajarib client ga response qaytarishimiz mumkin, bo'ladi, @RequestParam annotatsiyasini yana bir yaxshi tarafi shundan iboratki
+biz defaultValue parametri client dan kerakli ma'lumot kiritilmagan holatda da ham default value ni olib ishlatib ketsak bo'ladi, va bu holatda client ga 
+Bad Request 400 bormaydi. Shuningdek required = false parametrini o'rnatish orqali biz bu request paramga muhimlik
+darajasini berib ketishimiz ham mumkin bo'ladi
+
+@PathVariable - @RequestParam http request dan qiymatlarni oladigan bo'lsa, @PathVariable annotatsiyasi esa URI dan qiymatlarni ajratib olish uchun(to extract) qo'lla-
+niladi. 
+
+					===== Javob I =====
+Spring framework asosan MVC patternida ishlagani sababli, unda biz bilganimizdek 3-ta asosiy layer bor, Bular: Model, View, Controller. Savol tug'ilishi mumkin
+qanday qilib front-end dagi static page larimiz ni dynamic page ga o'zgartirishimiz mumkin, ya'ni front-end dagi ma'lumotlarni barchasi back-end up-to-date bo'lishi
+kerak. Ayni shu paytda bizga template engine lar yordamga keladi. Hozirgi kunda eng mashhur template enginelar bu : Jsp, Thymeleafб FreeMaker, Groovy va boshqalar.
+Biror bir template engine ni ishlatishdan oldin biz shu template engine uchun kerak bo'lgan ViewResolver ni @Configuration da ko'rsatib ketishimi kerak bo'ladi.
+
+JSP template engine ni render qilish uchun biz @Configuration class imizda InternalResourceViewResolver @bean yaratib ketishimiz kerak bo'ladi.
+Thymeleaf - shuningdek bu template engine ham Java ning template enginelaridan hisoblanib u Html, Css, Xml va JavaScript file larni process qiladi. Thymeleaf ni render 
+qilish uchun esa biz @configuration class imizda ikkita asosiy @bean yaratishimiz kerak bo'ladi bular demak : 
+SpringTempalteEngine va SpringResourceTemplateResolver. Keyinchalik biz bu template engine larimiz o'ziga xos bo'lgan tag lari orqali biz front-end dagi page larimizni
+dynamic page ga aylantirishimiz mumkin.
+
+					===== JAVOB J =====
+1. Inversion of Control (IoC) - bu qisqa qilib aytganda @Bean larni yaratish va ularni instantiate qilish jarayonini Spring frameworki o'z zimmasiga olishidir. 
+Bu holatda dasturchi qilishi kerak bo'lgan birgina ish esa bu Spring IoC (container) ga shunchaki configuration larni ko'rsatishdir. Biz configuration larni 3xil
+usulda ko'rsatishimiz mumkin
+1. XMl configuration file orqali
+2. Java based configuration orqali (bunda bizga kerak bo'lgan bean lar @Configuration annotatsiyasi o'rnatilgan class larni ichida Factory Method yordamida yaratiladi)
+3. Annotation based configuration - orqali, bu holat hozirgi kunda eng qulay va ko'p ishlatiladigan usul hisoblanadi. 
+
+Tasavvur qiling biz yaratgan class boshqa bir class ning obyektiga muhtoj(ya'ni depends on), bu degani bizning klass ishlashi uchun boshqa klassning obyekti kerak 
+bo'ladi, va o'sha obyekt bo'lmasa bizning class imiz to'g'ri ishlamasligi mumkin. Demak biz bu class ni yaratishimiz uchun avval unga kerak bo'lgan class ni obyektini
+yaratib olishimiz kerak, lekin ayni shu holatda noqulayliklar, va juda yomon kod hosil bo'lishi mumkin. Tasavvur qiling bizni dasturimizda 100lab class lar mavjud
+biz o'zimi har bir class ning dependency larini o'z qo'limiz bilan (manually) yaratib chiqishimiz, bizga avval noqulaylik keltiradi, va bu narsa bizning RAM imizda ham
+ko'p joy egallaydi, va testing jarayonini ham qiyinlashtirishi mumkin. Ayni shu holatni Spring frameworki @bean lar yordamida hal qilgan. Lekin @bean lar bo'lganida
+ham biz bir narsani xohlaymizki biz dasturni run qilganimizda bizning classimizga kerak bo'lgan dependency lar o'zi yaratilib instantiate bo'lib, bizning class imizni 
+ichiga inject bo'lishini. Ayni shu holatni Spring frameworki DI ya'ni Dependency injection orqali hal qiladi. Bu processni amalga oshirish uchun biz avval biror 
+bir klassni @bean ga aylantirishimiz kerak bo'ladi configuration lar orqali, keyin esa @Autowired annotatsiyasi orqali dastur run bo'lganida runtime holatida bizning
+class imizni dependency lari instantiate qilinadi, va mana shu process DI(Dependency injection) deb ataladi;

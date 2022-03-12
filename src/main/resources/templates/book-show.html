@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 mt-5 mb-5">
+      <table id="example" class="table table-bordered" style="width: 100%">
+        <thead>
+        <tr>
+          <th><strong>Name</strong></th>
+          <th><strong>Author</strong></th>
+          <th><strong>Category</strong></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${bookList}">
+          <td th:text="${book.name}">Name</td>
+          <td th:text="${book.author}">Author</td>
+          <td th:text="${book.category.name}">Category</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
